@@ -53,7 +53,7 @@ Located in `evaluation/`, this project benchmarks multiple models:
 
 This project evaluates multiple approaches to toxicity detection:
 
-- **Transformer-based models**: BERT, RoBERTa, DistilBERT fine-tuned on both generic toxic comment data and domain-specific GitHub code review data
+- **Transformer-based models**: BERT, RoBERTa, DistilBERT fine-tuned on GitHub comments data
 - **Domain-specific model**: [ToxiCR](https://github.com/WSU-SEAL/ToxiCR), optimized for code review toxicity
 - **Traditional baseline**: TF-IDF + Logistic Regression
 
