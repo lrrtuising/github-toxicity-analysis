@@ -22,7 +22,7 @@ This project analyzes toxicity dynamics across 5 major software development doma
 
 ### Machine Learning
 - **Hugging Face Transformers**: Model fine-tuning and inference
-- **Models Evaluated**: BERT, RoBERTa, DistilBERT, ToxiCR (domain-specific)
+- **Models Evaluated**: BERT, RoBERTa, DistilBERT, [ToxiCR](https://github.com/WSU-SEAL/ToxiCR) (domain-specific toxicity detector for code reviews)
 
 ### Infrastructure
 - **Docker**: Reproducible environment (`ghcr.io/lrrtuising/toxicr`)
@@ -138,6 +138,13 @@ This project was developed as part of a Master's capstone project at Northeaster
 - Applied NLP with state-of-the-art transformers
 - Domain-specific model fine-tuning
 - Time-series analysis and visualization
+
+## Acknowledgments
+
+This project uses [ToxiCR](https://github.com/WSU-SEAL/ToxiCR), a supervised learning-based tool developed by the Software Engineering Analytics Lab (SEAL) at Wayne State University for identifying toxic code review comments.
+
+**ToxiCR Reference:**
+- Sarker, J., Turzo, A. K., Dong, M., & Bosu, A. (2023). Automated Identification of Toxic Code Reviews Using ToxiCR. *ACM Transactions on Software Engineering and Methodology*. https://doi.org/10.1145/3583562
 
 ## Contact
 
