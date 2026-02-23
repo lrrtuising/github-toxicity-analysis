@@ -2,18 +2,18 @@
 
 A large-scale NLP pipeline for analyzing toxicity patterns and trends in open-source communities using fine-tuned language models.
 
-## 🎯 Project Overview
+## Project Overview
 
-This project analyzes toxicity dynamics across 5 major software development domains (ML, DevOps, Frontend, Mobile, Game) over a 6-year period (2019-2024), processing **300M+ GitHub code review comments** extracted from **2TB+ of GitHub Archive data**.
+This project analyzes toxicity dynamics across 5 major software development domains (ML, DevOps, Frontend, Mobile, Game) over a 6-year period (2019-2024), processing **300M+ GitHub code review comments** extracted from **2TB+ of GH Archive data**.
 
 ### Key Objectives
 
-- Build a high-performance data pipeline to ingest and transform massive GitHub Archive datasets
+- Build a high-performance data pipeline to ingest and transform massive GH Archive datasets
 - Fine-tune and evaluate multiple pre-trained language models for toxicity detection
 - Identify temporal toxicity trends and patterns across different development communities
 - Assess the impact of external events (e.g., COVID-19) on community toxicity levels
 
-## 🛠️ Technical Stack
+## Technical Stack
 
 ### Data Processing
 - **DuckDB**: Columnar SQL engine for efficient 2TB+ data ingestion and transformation
@@ -23,16 +23,15 @@ This project analyzes toxicity dynamics across 5 major software development doma
 ### Machine Learning
 - **Hugging Face Transformers**: Model fine-tuning and inference
 - **Models Evaluated**: BERT, RoBERTa, DistilBERT, ToxiCR (domain-specific)
-- **WandB** *(from resume)*: Experiment tracking and hyperparameter optimization
 
 ### Infrastructure
 - **Docker**: Reproducible environment (`ghcr.io/lrrtuising/toxicr`)
 - **Batch Processing**: Scalable inference on 300M+ comments
 
-## 📊 Dataset Pipeline
+## Dataset Pipeline
 
 ### 1. Data Ingestion (`download.py`)
-- Downloads raw GitHub Archive data from Google BigQuery public datasets
+- Downloads raw data from [GH Archive](https://www.gharchive.org/)
 - Filters relevant events (IssueCommentEvent, PullRequestReviewCommentEvent)
 
 ### 2. Data Transformation (`duckDB.sql`)
@@ -48,7 +47,7 @@ This project analyzes toxicity dynamics across 5 major software development doma
 - Applies fine-tuned models to generate toxicity scores
 - Batch processing optimized for throughput
 
-## 🧪 Model Evaluation
+## Model Evaluation
 
 Located in `evaluation/`, this project benchmarks multiple models:
 
@@ -60,16 +59,16 @@ Located in `evaluation/`, this project benchmarks multiple models:
 | ToxiCR | GitHub code reviews | `ToxiCR_github.ipynb` |
 | Baseline | Traditional ML | `baseline.ipynb`, `baseline_github.ipynb` |
 
-**Key Finding**: Fine-tuning on domain-specific GitHub data improved **AUC-ROC from 0.76 to 0.93** *(from resume)*.
+Fine-tuning on domain-specific GitHub data significantly improved model performance for toxicity detection in code review contexts.
 
-## 📈 Analysis
+## Analysis
 
 The `analysis/` folder contains time-series analysis notebooks for each domain:
 - Toxicity trend visualization (2019-2024)
 - Statistical analysis of temporal patterns
 - Correlation with external events (pandemic, major releases, etc.)
 
-## 🚀 Deployment
+## Deployment
 
 ### Docker Container
 
@@ -85,7 +84,7 @@ docker run -it ghcr.io/lrrtuising/toxicr
 
 ```bash
 # Install dependencies
-pip install -r requirements.txt  # (create if needed)
+pip install -r requirements.txt
 
 # Run toxicity scoring
 python toxicity_scorer_toxicr.py --input <comment_file> --output <score_file>
@@ -94,12 +93,12 @@ python toxicity_scorer_toxicr.py --input <comment_file> --output <score_file>
 jupyter notebook analysis/analysis_ml.ipynb
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 .
 ├── README.md                    # This file
-├── download.py                  # GitHub Archive downloader
+├── download.py                  # GH Archive downloader
 ├── duckDB.sql                   # SQL queries for data filtering
 ├── toxicity_scorer_toxicr.py    # Toxicity scoring script
 ├── scraper/                     # Domain-specific repo scrapers
@@ -125,15 +124,14 @@ jupyter notebook analysis/analysis_ml.ipynb
     └── score/                   # Comments + toxicity scores
 ```
 
-## 🔬 Results
+## Results
 
-- **Processed**: 2TB+ raw GitHub Archive → 300M curated comments
+- **Data Scale**: 2TB+ raw GH Archive → 300M curated comments
 - **Domains Analyzed**: ML, DevOps, Frontend, Mobile, Game
 - **Timespan**: 6 years (2019-2024)
-- **Model Performance**: AUC-ROC 0.93 (fine-tuned RoBERTa on GitHub data)
-- **Key Insight**: Toxicity levels spiked in early 2020 (COVID-19) and showed domain-specific patterns
+- **Key Insight**: Toxicity levels showed temporal variations with spikes correlating to external events (e.g., early 2020) and domain-specific patterns
 
-## 📝 Academic Context
+## Academic Context
 
 This project was developed as part of a Master's capstone project at Northeastern University (2024-2025). It demonstrates:
 - Large-scale data engineering on real-world datasets
@@ -141,16 +139,7 @@ This project was developed as part of a Master's capstone project at Northeaster
 - Domain-specific model fine-tuning
 - Time-series analysis and visualization
 
-## 🤝 Contributing / Questions
+## Contact
 
-For access to the full dataset or collaboration inquiries:
 - **Email**: ycyang.dev@gmail.com
 - **GitHub**: [@lrrtuising](https://github.com/lrrtuising)
-
-## 📄 License
-
-MIT License (or specify appropriate license)
-
----
-
-**Note for Recruiters**: This project showcases end-to-end ML engineering, from data pipelines to model deployment, relevant to production AI/ML systems. The Docker container demonstrates reproducibility and deployment readiness.
