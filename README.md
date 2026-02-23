@@ -59,7 +59,7 @@ Located in `evaluation/`, this project benchmarks multiple models:
 | ToxiCR | GitHub code reviews | `ToxiCR_github.ipynb` |
 | TF-IDF + LR | Generic + GitHub-specific | `baseline.ipynb`, `baseline_github.ipynb` |
 
-**Performance on Kaggle Toxic Comment Dataset:**
+**Performance on Generic Toxic Comment Dataset (Kaggle):**
 
 | Model | Accuracy | Precision | Recall | F1 | ROC AUC |
 |-------|----------|-----------|--------|-----|---------|
@@ -68,7 +68,17 @@ Located in `evaluation/`, this project benchmarks multiple models:
 | RoBERTa | 0.92 | 0.98 | 0.86 | 0.92 | 0.9898 |
 | DistilBERT | 0.80 | 0.72 | 0.98 | 0.83 | 0.9571 |
 
-Fine-tuning on domain-specific GitHub data significantly improved model performance for toxicity detection in code review contexts.
+**Performance on Code Review Dataset (ToxiCR):**
+
+| Model | Accuracy | Precision | Recall | F1 | ROC AUC |
+|-------|----------|-----------|--------|-----|---------|
+| TF-IDF + LR | 0.75 | 0.90 | 0.78 | 0.93 | 0.7637 |
+| BERT | 0.84 | 0.86 | 0.96 | 0.91 | 0.8562 |
+| RoBERTa | 0.81 | 0.87 | 0.91 | 0.89 | 0.8570 |
+| DistilBERT | 0.81 | 0.86 | 0.92 | 0.89 | 0.8063 |
+| ToxiCR | 0.9711 | 0.9132 | 0.94 | 0.93 | 0.990 |
+
+**Key Observation:** General-purpose models (BERT, RoBERTa) showed performance degradation on code review data compared to generic toxic comments, with ROC AUC dropping from ~0.99 to ~0.86. ToxiCR, specifically designed for code review toxicity, achieved the best performance (ROC AUC 0.990), demonstrating the importance of domain-specific model adaptation.
 
 ## Analysis
 
