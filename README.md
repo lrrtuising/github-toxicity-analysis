@@ -74,11 +74,14 @@ The `analysis/` folder contains time-series analysis notebooks for each domain:
 
 ### Docker Container
 
-Pre-built environment available:
+Pre-built environment with all dependencies is available via GitHub Container Registry:
+
 ```bash
 docker pull ghcr.io/lrrtuising/toxicr:latest
 docker run -it ghcr.io/lrrtuising/toxicr
 ```
+
+**Package:** [ghcr.io/lrrtuising/toxicr](https://github.com/lrrtuising/github-toxicity-analysis/pkgs/container/toxicr)
 
 ### Local Setup
 
