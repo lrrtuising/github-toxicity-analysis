@@ -51,34 +51,17 @@ This project analyzes toxicity dynamics across 5 major software development doma
 
 Located in `evaluation/`, this project benchmarks multiple models:
 
-| Model | Dataset | Notebook |
-|-------|---------|----------|
-| BERT | Generic + GitHub-specific | `bert.ipynb`, `bert_github.ipynb` |
-| RoBERTa | Generic + GitHub-specific | `RoBERTa.ipynb`, `RoBERTa_github.ipynb` |
-| DistilBERT | Generic + GitHub-specific | `DistilBERT.ipynb`, `DistilBERT_github.ipynb` |
-| ToxiCR | GitHub code reviews | `ToxiCR_github.ipynb` |
-| TF-IDF + LR | Generic + GitHub-specific | `baseline.ipynb`, `baseline_github.ipynb` |
+This project evaluates multiple approaches to toxicity detection:
 
-**Performance on Generic Toxic Comment Dataset (Kaggle):**
+- **Transformer-based models**: BERT, RoBERTa, DistilBERT fine-tuned on both generic toxic comment data and domain-specific GitHub code review data
+- **Domain-specific model**: [ToxiCR](https://github.com/WSU-SEAL/ToxiCR), optimized for code review toxicity
+- **Traditional baseline**: TF-IDF + Logistic Regression
 
-| Model | Accuracy | Precision | Recall | F1 | ROC AUC |
-|-------|----------|-----------|--------|-----|---------|
-| TF-IDF + LR | 0.93 | 0.98 | 0.94 | 0.96 | 0.97 |
-| BERT | 0.96 | 0.93 | 0.99 | 0.96 | 0.9963 |
-| RoBERTa | 0.92 | 0.98 | 0.86 | 0.92 | 0.9898 |
-| DistilBERT | 0.80 | 0.72 | 0.98 | 0.83 | 0.9571 |
+Each model was evaluated on:
+1. **Generic toxic comment dataset** (Kaggle): Notebooks `bert.ipynb`, `RoBERTa.ipynb`, `DistilBERT.ipynb`, `baseline.ipynb`
+2. **Code review dataset** (ToxiCR): Notebooks `*_github.ipynb` variants
 
-**Performance on Code Review Dataset (ToxiCR):**
-
-| Model | Accuracy | Precision | Recall | F1 | ROC AUC |
-|-------|----------|-----------|--------|-----|---------|
-| TF-IDF + LR | 0.75 | 0.90 | 0.78 | 0.93 | 0.7637 |
-| BERT | 0.84 | 0.86 | 0.96 | 0.91 | 0.8562 |
-| RoBERTa | 0.81 | 0.87 | 0.91 | 0.89 | 0.8570 |
-| DistilBERT | 0.81 | 0.86 | 0.92 | 0.89 | 0.8063 |
-| ToxiCR | 0.9711 | 0.9132 | 0.94 | 0.93 | 0.990 |
-
-**Key Observation:** General-purpose models (BERT, RoBERTa) showed performance degradation on code review data compared to generic toxic comments, with ROC AUC dropping from ~0.99 to ~0.86. ToxiCR, specifically designed for code review toxicity, achieved the best performance (ROC AUC 0.990), demonstrating the importance of domain-specific model adaptation.
+Detailed performance metrics and comparative analysis are available in the `evaluation/` notebooks and `analysis/analysis.ipynb`.
 
 ## Analysis
 
@@ -148,8 +131,11 @@ jupyter notebook analysis/analysis_ml.ipynb
 - **Data Scale**: 2TB+ raw GH Archive → 300M curated comments
 - **Domains Analyzed**: ML, DevOps, Frontend, Mobile, Game
 - **Timespan**: 6 years (2019-2024)
-- **Model Performance**: BERT achieved ROC AUC of 0.9963 on generic toxic comment data, with domain adaptation improving performance on GitHub-specific code review comments
-- **Key Insight**: Toxicity levels showed temporal variations with spikes correlating to external events (e.g., early 2020) and domain-specific patterns across different software development communities
+- **Model Performance**: Fine-tuned transformer models (BERT, RoBERTa, DistilBERT) on domain-specific GitHub data; comparative evaluation showed the importance of domain adaptation for code review toxicity detection
+- **Key Findings**: 
+  - Toxicity levels showed temporal variations with spikes correlating to external events (e.g., early 2020)
+  - Distinct patterns emerged across different software development communities
+  - Domain-specific models outperformed general-purpose approaches for code review contexts
 
 ## Academic Context
 
