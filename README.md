@@ -57,7 +57,16 @@ Located in `evaluation/`, this project benchmarks multiple models:
 | RoBERTa | Generic + GitHub-specific | `RoBERTa.ipynb`, `RoBERTa_github.ipynb` |
 | DistilBERT | Generic + GitHub-specific | `DistilBERT.ipynb`, `DistilBERT_github.ipynb` |
 | ToxiCR | GitHub code reviews | `ToxiCR_github.ipynb` |
-| Baseline | Traditional ML | `baseline.ipynb`, `baseline_github.ipynb` |
+| TF-IDF + LR | Generic + GitHub-specific | `baseline.ipynb`, `baseline_github.ipynb` |
+
+**Performance on Kaggle Toxic Comment Dataset:**
+
+| Model | Accuracy | Precision | Recall | F1 | ROC AUC |
+|-------|----------|-----------|--------|-----|---------|
+| TF-IDF + LR | 0.93 | 0.98 | 0.94 | 0.96 | 0.97 |
+| BERT | 0.96 | 0.93 | 0.99 | 0.96 | 0.9963 |
+| RoBERTa | 0.92 | 0.98 | 0.86 | 0.92 | 0.9898 |
+| DistilBERT | 0.80 | 0.72 | 0.98 | 0.83 | 0.9571 |
 
 Fine-tuning on domain-specific GitHub data significantly improved model performance for toxicity detection in code review contexts.
 
@@ -129,7 +138,8 @@ jupyter notebook analysis/analysis_ml.ipynb
 - **Data Scale**: 2TB+ raw GH Archive → 300M curated comments
 - **Domains Analyzed**: ML, DevOps, Frontend, Mobile, Game
 - **Timespan**: 6 years (2019-2024)
-- **Key Insight**: Toxicity levels showed temporal variations with spikes correlating to external events (e.g., early 2020) and domain-specific patterns
+- **Model Performance**: BERT achieved ROC AUC of 0.9963 on generic toxic comment data, with domain adaptation improving performance on GitHub-specific code review comments
+- **Key Insight**: Toxicity levels showed temporal variations with spikes correlating to external events (e.g., early 2020) and domain-specific patterns across different software development communities
 
 ## Academic Context
 
